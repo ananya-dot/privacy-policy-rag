@@ -1,0 +1,31 @@
+{
+  "build": "hd610c6a_0",
+  "build_number": 0,
+  "channel": "https://conda.anaconda.org/conda-forge/noarch",
+  "constrains": [],
+  "depends": [
+    "faiss 1.9.0 *_cpu"
+  ],
+  "extracted_package_dir": "/Users/ananyasachdev/miniforge3/pkgs/faiss-cpu-1.9.0-hd610c6a_0",
+  "files": [],
+  "fn": "faiss-cpu-1.9.0-hd610c6a_0.conda",
+  "license": "MIT",
+  "link": {
+    "source": "/Users/ananyasachdev/miniforge3/pkgs/faiss-cpu-1.9.0-hd610c6a_0",
+    "type": 1
+  },
+  "md5": "c3dafc1d6ff23a6167045afabaacc411",
+  "name": "faiss-cpu",
+  "package_tarball_full_path": "/Users/ananyasachdev/miniforge3/pkgs/faiss-cpu-1.9.0-hd610c6a_0.conda",
+  "paths_data": {
+    "paths": [],
+    "paths_version": 1
+  },
+  "requested_spec": "faiss-cpu",
+  "sha256": "6f8fbad673730de45381b6602ca1e02c3ad1cbdcff1df61107ae81b87bf6ceca",
+  "size": 18446,
+  "subdir": "osx-arm64",
+  "timestamp": 1734666205000,
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/faiss-cpu-1.9.0-hd610c6a_0.conda",
+  "version": "1.9.0"
+}
