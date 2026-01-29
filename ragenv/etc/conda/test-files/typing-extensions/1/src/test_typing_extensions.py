@@ -8867,7 +8867,7 @@ class TestEvaluateForwardRefs(BaseTestCase):
         self.assertIs(evaluate_forward_ref(typing.ForwardRef("int"), globals={"int": str}), str)
         import builtins
 
-        from test import support
+        from q2.q2_test import support
         with support.swap_attr(builtins, "int", dict):
             self.assertIs(evaluate_forward_ref(typing.ForwardRef("int")), dict)
 

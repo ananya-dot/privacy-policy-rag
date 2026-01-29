@@ -588,7 +588,7 @@ class TestParserIdempotency(support.TestCase):
     """A cut-down version of pytree_idempotency.py."""
 
     def parse_file(self, filepath):
-        if test.support.verbose:
+        if q2_test.support.verbose:
             print(f"Parse file: {filepath}")
         with open(filepath, "rb") as fp:
             encoding = tokenize.detect_encoding(fp.readline)[0]

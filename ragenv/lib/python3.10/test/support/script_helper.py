@@ -11,7 +11,7 @@ import py_compile
 import zipfile
 
 from importlib.util import source_from_cache
-from test import support
+from q2.q2_test import support
 from test.support.import_helper import make_legacy_pyc
 
 

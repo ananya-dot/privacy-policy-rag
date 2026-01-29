@@ -5,7 +5,7 @@ import sys
 import threading
 import time
 
-from test import support
+from q2.q2_test import support
 
 
 #=======================================================================

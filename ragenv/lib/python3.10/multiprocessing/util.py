@@ -468,7 +468,7 @@ def _cleanup_tests():
     """Cleanup multiprocessing resources when multiprocessing tests
     completed."""
 
-    from test import support
+    from q2.q2_test import support
 
     # cleanup multiprocessing
     process._cleanup()

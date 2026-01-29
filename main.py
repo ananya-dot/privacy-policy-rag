@@ -17,7 +17,6 @@ def ollama_embed(texts, model="nomic-embed-text"):
         embeddings.append(response.json()["embedding"])
     return embeddings
 
-
 def ollama_chat(contexts, question, model="llama2"):
     url = "http://localhost:11434/api/chat"
     context = "\n\n".join(contexts)
@@ -34,7 +33,6 @@ def ollama_chat(contexts, question, model="llama2"):
             data = line.decode("utf-8")
             try:
                 chunk = json.loads(data)
-                # Some Ollama versions use 'message', some use 'content'
                 if "message" in chunk and "content" in chunk["message"]:
                     full_response += chunk["message"]["content"]
                 elif "content" in chunk:
@@ -68,7 +66,6 @@ def chunk_text(text, chunk_size=500, chunk_overlap=50):
     )
     return splitter.split_text(text)
 
-# Filter embeddings and chunks to ensure all embeddings have the same length
 def filter_embeddings_and_chunks(embeddings, chunks):
     lengths = [len(e) for e in embeddings]
     most_common_length = Counter(lengths).most_common(1)[0][0]
@@ -80,23 +77,19 @@ def filter_embeddings_and_chunks(embeddings, chunks):
             filtered_chunks.append(chunk)
     return filtered_embeddings, filtered_chunks
 
-# 4. Embed chunks (Ollama)
 def embed_text(texts):
     return ollama_embed(texts)
 
-# 5. Store embeddings in FAISS
 def create_faiss_index(embeddings):
     dimension = len(embeddings[0])
     index = faiss.IndexFlatL2(dimension)
     index.add(np.array(embeddings).astype('float32'))
     return index
 
-# 6. Search FAISS
 def search_index(index, query_embedding, k=5):
     D, I = index.search(np.array([query_embedding]).astype('float32'), k)
     return I[0]
 
-# 7. Generate answer (Ollama)
 def generate_answer(contexts, question):
     return ollama_chat(contexts, question)
 
@@ -111,12 +104,10 @@ def read_apps_file(file_path):
     return apps
 
 def process_all_apps(apps_file):
-    # Read apps and their URLs
     apps = read_apps_file(apps_file)
     
-    # Process each app's privacy policy
     all_chunks = []
-    chunk_sources = []  # Keep track of which app each chunk came from
+    chunk_sources = []  
     
     for app_name, url in apps.items():
         print(f"Processing {app_name}...")
@@ -128,18 +119,14 @@ def process_all_apps(apps_file):
     
     return all_chunks, chunk_sources
 
-# Main execution
 if __name__ == "__main__":
-    # Process all apps
     chunks, chunk_sources = process_all_apps("apps.txt")
     
-    # Create embeddings and index
     print("Creating embeddings...")
     embeddings = embed_text(chunks)
     embeddings, chunks = filter_embeddings_and_chunks(embeddings, chunks)
     index = create_faiss_index(embeddings)
     
-    # Interactive Q&A loop
     print("\nRAG Pipeline is ready! Type 'quit' to exit.")
     while True:
         user_question = input("\nEnter your question: ")
@@ -153,7 +140,6 @@ if __name__ == "__main__":
         answer = generate_answer(relevant_chunks, user_question)
         print("\nAnswer:", answer)
         
-        # Print sources
         print("\nSources:")
         for i in top_k:
             print(f"- {chunk_sources[i]}")

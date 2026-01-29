@@ -14,7 +14,7 @@ from distutils.errors import (
     UnknownFileError)
 
 import unittest
-from test import support
+from q2.q2_test import support
 from test.support import os_helper
 from test.support.script_helper import assert_python_ok
 

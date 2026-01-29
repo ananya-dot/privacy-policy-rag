@@ -6,7 +6,7 @@ from itertools import chain
 import unittest
 import unittest.mock
 from test.support import requires, swap_attr
-from test import support
+from q2.q2_test import support
 import tkinter as tk
 from idlelib.idle_test.tkinter_testing_utils import run_in_tk_mainloop
 
